@@ -22,3 +22,48 @@ spec:
           image: louislam/uptime-kuma
           ports:
             - containerPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptimekuma
+spec:
+  selector:
+    app: uptimekuma
+  ports:
+    - protocol: TCP
+      name: web
+      port: 3001
+  type: ClusterIP
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: uptimekuma-certificate
+  namespace: uptimekuma
+spec:
+  secretName: uptimekuma-certificate-secret
+  issuerRef:
+    name: cloudflare-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - status.dev.k3s.rcrg.me
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: uptimekuma-ingressroute
+  namespace: ptimekuma
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`status.dev.k3s.rcrg.me`)
+    kind: Rule
+    services:
+    - name: uptimekuma
+      port: 80
+  tls:
+    secretName: uptimekuma-certificate-secret
