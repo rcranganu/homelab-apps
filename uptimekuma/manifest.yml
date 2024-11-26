@@ -26,6 +26,9 @@ spec:
               cpu: 300m
           ports:
             - containerPort: 3001
+          volumeMounts:
+            - mountPath: /app/data
+              name: uptimekuma
       volumes:
         - name: uptimekuma
           persistentVolumeClaim:
