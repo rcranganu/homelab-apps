@@ -26,6 +26,10 @@ spec:
               cpu: 300m
           ports:
             - containerPort: 3001
+      volumes:
+        - name: uptimekuma
+          persistentVolumeClaim:
+            claimName: uptimekuma
 ---
 apiVersion: v1
 kind: Service
