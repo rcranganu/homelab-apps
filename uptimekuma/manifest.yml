@@ -3,6 +3,20 @@ kind: Namespace
 metadata:
   name: uptimekuma
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptimekuma-pvc
+  namespace: uptimekuma
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: slow
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -28,11 +42,11 @@ spec:
             - containerPort: 3001
           volumeMounts:
             - mountPath: /app/data
-              name: uptimekuma
+              name: data
       volumes:
         - name: uptimekuma
           persistentVolumeClaim:
-            claimName: uptimekuma
+            claimName: uptimekuma-pvc
 ---
 apiVersion: v1
 kind: Service
