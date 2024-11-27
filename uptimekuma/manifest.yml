@@ -43,7 +43,7 @@ spec:
             - mountPath: /app/data
               name: data
       volumes:
-        - name: uptimekuma
+        - name: data
           persistentVolumeClaim:
             claimName: uptimekuma-pvc
 ---
