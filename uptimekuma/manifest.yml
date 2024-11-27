@@ -4,6 +4,18 @@ metadata:
   name: uptimekuma
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: uptimeluma
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: uptimekuma-pvc
