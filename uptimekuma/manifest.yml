@@ -14,19 +14,19 @@ metadata:
 #   accessModes:
 #     - ReadWriteMany
 #   persistentVolumeReclaimPolicy: Retain
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: uptimekuma-pvc
-  namespace: uptimekuma
-spec:
-  accessModes:
-    - ReadWriteMany
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 1Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: uptimekuma-pvc
+#   namespace: uptimekuma
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   volumeMode: Filesystem
+#   resources:
+#     requests:
+#       storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -57,7 +57,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: uptimekuma-pvc
+            claimName: uptimekuma
 ---
 apiVersion: v1
 kind: Service
