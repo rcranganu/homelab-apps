@@ -15,7 +15,6 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: slow
 ---
 apiVersion: apps/v1
 kind: Deployment
