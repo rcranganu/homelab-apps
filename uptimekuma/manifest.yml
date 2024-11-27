@@ -6,7 +6,7 @@ metadata:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: uptimeluma
+  name: uptimekuma
 spec:
   capacity:
     storage: 1Gi
