@@ -72,19 +72,19 @@ spec:
       port: 3001
   type: ClusterIP
 
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: uptimekuma-certificate
-  namespace: uptimekuma
-spec:
-  secretName: uptimekuma-certificate-secret
-  issuerRef:
-    name: cloudflare-cluster-issuer
-    kind: ClusterIssuer
-  dnsNames:
-    - status.dev.k3s.rcrg.me
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: uptimekuma-certificate
+#   namespace: uptimekuma
+# spec:
+#   secretName: uptimekuma-certificate-secret
+#   issuerRef:
+#     name: cloudflare-cluster-issuer
+#     kind: ClusterIssuer
+#   dnsNames:
+#     - status.dev.k3s.rcrg.me
 
 ---
 apiVersion: traefik.io/v1alpha1
@@ -101,5 +101,5 @@ spec:
     services:
     - name: uptimekuma
       port: 3001
-  tls:
-    secretName: uptimekuma-certificate-secret
+  # tls:
+  #   secretName: uptimekuma-certificate-secret
