@@ -38,10 +38,6 @@ spec:
     matchLabels:
       app: uptimekuma
   replicas: 1
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
   template:
     metadata:
       labels:
