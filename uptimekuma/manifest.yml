@@ -59,18 +59,18 @@ spec:
             requests:
               cpu: 50m
               memory: 128Mi
-          # livenessProbe:
-          #   tcpSocket:
-          #     port: web-ui
-          #   initialDelaySeconds: 60
-          #   periodSeconds: 10
-          # readinessProbe:
-          #   httpGet:
-          #     scheme: HTTP
-          #     path: /
-          #     port: web-ui
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: web-ui
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /
+              port: web-ui
+            initialDelaySeconds: 30
+            periodSeconds: 10
           volumeMounts:
             - mountPath: /app/data
               name: data
