@@ -3,14 +3,26 @@ kind: Namespace
 metadata:
   name: semaphore
 ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: semaphore
+#   namespace: semaphore
+# type: Opaque
+# data:
+#   SEMAPHORE_ADMIN: admin
+#   SEMAPHORE_ADMIN_PASSWORD: Anisi@080423
+#   SEMAPHORE_ADMIN_NAME: Razvan
+#   SEMAPHORE_ADMIN_EMAIL: razvan@cranganu.me
 apiVersion: v1
-kind: Secret
+kind: PersistentVolumeClaim
 metadata:
-  name: semaphore-secret
+  name: semaphore-pvc
   namespace: semaphore
-type: Opaque
-data:
-  SEMAPHORE_ADMIN: admin
-  SEMAPHORE_ADMIN_PASSWORD: Anisi@080423
-  SEMAPHORE_ADMIN_NAME: Razvan
-  SEMAPHORE_ADMIN_EMAIL: razvan@cranganu.me
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+---
