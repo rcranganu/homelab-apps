@@ -42,6 +42,8 @@ spec:
               value: Razvan
             - name: SEMAPHORE_ADMIN_EMAIL
               value: razvan@cranganu.me
+            - name: SEMAPHORE_PORT
+              value: ":3000"
             - name: SEMAPHORE_DB_DIALECT
               value: mysql
             - name: SEMAPHORE_DB_HOST
@@ -72,7 +74,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: semaphore
+  name: semaphoreui
   namespace: semaphore
 spec:
   selector:
