@@ -42,15 +42,6 @@ spec:
         app: semaphore
     spec:
       containers:
-        - name: semaphore
-          image: semaphoreui/semaphore:v2.10.43
-          resources:
-            requests:
-              memory: 1Gi
-              cpu: 1Gi
-          ports:
-            - containerPort: 3000
-              name: web-ui
         - env:
             - name: SEMAPHORE_ADMIN
               value: admin
@@ -72,6 +63,15 @@ spec:
               value: Anisi@080423
             - name: SEMAPHORE_PLAYBOOK_PATH
               value: /tmp/sempahore
+          name: semaphore
+          image: semaphoreui/semaphore:v2.10.43
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 1Gi
+          ports:
+            - containerPort: 3000
+              name: web-ui
           volumeMounts:
             - mountPath: /tmp/semaphore
               name: data
