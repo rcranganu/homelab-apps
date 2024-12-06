@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: semaphore
 ---
-apiVersion: vq
+apiVersion: v1
 kind: Secret
 metadata:
   name: semaphore-secret
