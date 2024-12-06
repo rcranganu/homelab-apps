@@ -57,7 +57,7 @@ spec:
           name: semaphore
           image: semaphoreui/semaphore:v2.10.43
           ports:
-            - containerPort: '3000'
+            - containerPort: 3000
               name: web
           volumeMounts:
             - mountPath: /tmp/semaphore
