@@ -2,4 +2,15 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: semaphore
-  
+---
+apiVersion: vq
+kind: Secret
+metadata:
+  name: semaphore-secret
+  namespace: semaphore
+type: Opaque
+data:
+  SEMAPHORE_ADMIN: admin
+  SEMAPHORE_ADMIN_PASSWORD: Anisi@080423
+  SEMAPHORE_ADMIN_NAME: Razvan
+  SEMAPHORE_ADMIN_EMAIL: razvan@cranganu.me
