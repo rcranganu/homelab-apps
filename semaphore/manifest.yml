@@ -79,7 +79,7 @@ spec:
     app: semaphore
   ports:
     - protocol: TCP
-      name: web
+      name: web-ui
       port: 3000
   type: ClusterIP
 ---
