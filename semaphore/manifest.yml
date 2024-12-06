@@ -3,17 +3,6 @@ kind: Namespace
 metadata:
   name: semaphore
 ---
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: semaphore
-#   namespace: semaphore
-# type: Opaque
-# data:
-#   SEMAPHORE_ADMIN: admin
-#   SEMAPHORE_ADMIN_PASSWORD: Anisi@080423
-#   SEMAPHORE_ADMIN_NAME: Razvan
-#   SEMAPHORE_ADMIN_EMAIL: razvan@cranganu.me
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -21,7 +10,7 @@ metadata:
   namespace: semaphore
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi
@@ -29,6 +18,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: semaphore
   name: semaphore
   namespace: semaphore
 spec:
@@ -65,10 +56,6 @@ spec:
               value: /tmp/sempahore
           name: semaphore
           image: semaphoreui/semaphore:v2.10.43
-          resources:
-            requests:
-              memory: 1Gi
-              cpu: 1Gi
           ports:
             - containerPort: 3000
               name: web-ui
@@ -78,4 +65,48 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: sempahore-pvc
+            claimName: semaphore-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: semaphore
+  namespace: semaphore
+spec:
+  selector:
+    app: semaphore
+  ports:
+    - protocol: TCP
+      name: web
+      port: 3000
+  type: ClusterIP
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: semaphore-certificate
+  namespace: semaphore
+spec:
+  secretName: tls-semaphore-certificate
+  issuerRef:
+    name: cloudflare-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - semaphore.dev.k3s.rcrg.me
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: semaphore-ingressroute
+  namespace: semaphore
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`semaphore.dev.k3s.rcrg.me`)
+    kind: Rule
+    services:
+    - name: semaphore
+      port: 3000
+  tls:
+    secretName: tls-semaphore-certificate
