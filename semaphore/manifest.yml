@@ -47,7 +47,7 @@ spec:
             - name: SEMAPHORE_DB_HOST
               value: 10.10.4.100
             - name: SEMAPHORE_DB_NAME
-              value: semaphore
+              value: semaphore_prod
             - name: SEMAPHORE_DB_USER
               value: dbadmin
             - name: SEMAPHORE_DB_PASS
@@ -70,7 +70,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: semaphore
+  name: semaphoreui
   namespace: semaphore
 spec:
   selector:
@@ -92,7 +92,7 @@ spec:
     name: cloudflare-cluster-issuer
     kind: ClusterIssuer
   dnsNames:
-    - semaphore.dev.k3s.rcrg.me
+    - ansible.rcrg.me
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
@@ -103,7 +103,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`semaphore.dev.k3s.rcrg.me`)
+  - match: Host(`ansible.rcrg.me`)
     kind: Rule
     services:
     - name: semaphore
