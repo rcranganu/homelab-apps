@@ -65,20 +65,20 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: semaphore-pvc
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: semaphore
-  namespace: semaphore
-spec:
-  selector:
-    app: semaphore
-  ports:
-    - protocol: TCP
-      name: web
-      port: 3000
-  type: ClusterIP
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: semaphore
+#   namespace: semaphore
+# spec:
+#   selector:
+#     app: semaphore
+#   ports:
+#     - protocol: TCP
+#       name: web
+#       port: 3000
+#   type: ClusterIP
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
