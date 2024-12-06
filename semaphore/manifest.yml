@@ -58,9 +58,9 @@ spec:
             #   value: HwRoWnYA+JpqRO2OcyD6fJAhcPe1+CpgJkVDXzaH3OQ=
           name: semaphore
           image: semaphoreui/semaphore:v2.10.43
-          # ports:
-          #   - containerPort: 3000
-          #     name: web-ui
+          ports:
+            - containerPort: 3000
+              name: web-ui
           volumeMounts:
             - mountPath: /tmp/semaphore
               name: data
