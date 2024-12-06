@@ -81,7 +81,6 @@ spec:
     - protocol: TCP
       name: web
       port: 3000
-      targetPort: 3000
   type: ClusterIP
 ---
 apiVersion: cert-manager.io/v1
