@@ -78,9 +78,9 @@ spec:
   ports:
     - protocol: TCP
       name: web
-      port: 80
-      targetPort: 3000
-  type: LoadBalancer
+      port: 3000
+      # targetPort: 3000
+  type: ClusterIP
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -107,7 +107,7 @@ spec:
   - match: Host(`semaphore.rcrg.me`)
     kind: Rule
     services:
-    - name: semaphore
+    - name: semaphoreui
       port: 3000
   tls:
     secretName: tls-semaphore-certificate
