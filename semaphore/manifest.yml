@@ -78,8 +78,9 @@ spec:
   ports:
     - protocol: TCP
       name: web
-      port: 3000
-  type: ClusterIP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
