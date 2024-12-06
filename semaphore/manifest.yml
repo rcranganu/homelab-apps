@@ -26,3 +26,56 @@ spec:
     requests:
       storage: 2Gi
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: semaphore
+  namespace: semaphore
+spec:
+  selector:
+    matchLabels:
+      app: semaphore
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: semaphore
+    spec:
+      containers:
+        - name: semaphore
+          image: semaphoreui/semaphore:v2.10.43
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 1Gi
+          ports:
+            - containerPort: 3000
+              name: web-ui
+        - env:
+            - name: SEMAPHORE_ADMIN
+              value: admin
+            - name: SEMAPHORE_ADMIN_PASSWORD
+              value: Anisi@080423
+            - name: SEMAPHORE_ADMIN_NAME
+              value: Razvan
+            - name: SEMAPHORE_ADMIN_EMAIL
+              value: razvan@cranganu.me
+            - name: SEMAPHORE_DB_DIALECT
+              value: mysql
+            - name: SEMAPHORE_DB_HOST
+              value: 10.10.4.100
+            - name: SEMAPHORE_DB_NAME
+              value: semaphore
+            - name: SEMAPHORE_DB_USER
+              value: dbadmin
+            - name: SEMAPHORE_DB_PASS
+              value: Anisi@080423
+            - name: SEMAPHORE_PLAYBOOK_PATH
+              value: /tmp/sempahore
+          volumeMounts:
+            - mountPath: /tmp/semaphore
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: sempahore
