@@ -46,6 +46,8 @@ spec:
               value: mysql
             - name: SEMAPHORE_DB_HOST
               value: 10.10.4.100
+            - name: SEMAPHORE_DB_PORT
+              value: "3306"
             - name: SEMAPHORE_DB_NAME
               value: semaphore_prod
             - name: SEMAPHORE_DB_USER
