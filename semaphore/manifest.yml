@@ -25,7 +25,7 @@ data:
 #use echo -n <base64-encoded-string> |base64 -d to decode
   SEMAPHORE_ADMIN: YWRtaW4=
   SEMAPHORE_ADMIN_PASSWORD: QW5pc2lAMDgwNDIz
-  SEMAPHORE_DB_NAME: c2VtYXBob3JlX2Rldg==
+  SEMAPHORE_DB_NAME: c2VtYXBob3JlX3Byb2Q=
   SEMAPHORE_DB_USER: ZGJhZG1pbg==
   SEMAPHORE_DB_PASS: QW5pc2lAMDgwNDIz
 ---
