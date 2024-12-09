@@ -52,7 +52,11 @@ spec:
                   key: SEMAPHORE_ADMIN
                   optional: false
             - name: SEMAPHORE_ADMIN_PASSWORD
-              value: Anisi@080423
+              valueFrom:
+                secretKeyRef:
+                  name: semaphore-secret
+                  key: SEMAPHORE_ADMIN_PASSWORD
+                  optional: false
             - name: SEMAPHORE_ADMIN_NAME
               value: Razvan
             - name: SEMAPHORE_ADMIN_EMAIL
