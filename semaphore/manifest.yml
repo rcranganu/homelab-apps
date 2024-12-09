@@ -69,11 +69,23 @@ spec:
             - name: SEMAPHORE_DB_HOST
               value: 10.10.4.100
             - name: SEMAPHORE_DB_NAME
-              value: semaphore_prod
+              valueFrom:
+                secretKeyRef:
+                  name: semaphore-secret
+                  key: SEMAPHORE_DB_NAME
+                  optional: false
             - name: SEMAPHORE_DB_USER
-              value: dbadmin
+              valueFrom:
+                secretKeyRef:
+                  name: semaphore-secret
+                  key: SEMAPHORE_DB_USER
+                  optional: false
             - name: SEMAPHORE_DB_PASS
-              value: Anisi@080423
+              valueFrom:
+                secretKeyRef:
+                  name: semaphore-secret
+                  key: SEMAPHORE_DB_PASS
+                  optional: false
             - name: SEMAPHORE_PLAYBOOK_PATH
               value: /tmp/sempahore
           name: semaphore
