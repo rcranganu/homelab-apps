@@ -52,7 +52,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: semaphore-secret
-                  key: SEMPAHORE_ADMIN
+                  key: SEMAPHORE_ADMIN
                   optional: false
             - name: SEMAPHORE_ADMIN_PASSWORD
               valueFrom:
