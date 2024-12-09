@@ -86,7 +86,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: semaphore-secret
-                  key: SEMAPHORE_DB_PASSWORD
+                  key: SEMAPHORE_DB_PASS
                   optional: false
             - name: SEMAPHORE_PLAYBOOK_PATH
               value: /tmp/sempahore
