@@ -84,7 +84,7 @@ spec:
                   optional: false
             - name: SEMAPHORE_DB_PASS
               valueFrom:
-                secretKeyFrom:
+                secretKeyRef:
                   name: semaphore-secret
                   key: SEMAPHORE_DB_PASSWORD
                   optional: false
