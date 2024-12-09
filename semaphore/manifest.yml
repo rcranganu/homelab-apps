@@ -15,6 +15,17 @@ spec:
     requests:
       storage: 2Gi
 ---
+apiVersion: v1
+kind: Secret
+metadata: 
+  name: semaphore-secret
+  namespace: semaphore
+type: Opaque
+data:
+#use echo -n <base64-encoded-string> |base64 -d to decode
+  SEMAPHORE_ADMIN: YWRtaW4=
+  SEMAPHORE_ADMIN_PASSWORD: QW5pc2lAMDgwNDIz
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,7 +46,11 @@ spec:
       containers:
         - env:
             - name: SEMAPHORE_ADMIN
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: semaphore-secret
+                  key: SEMAPHORE_ADMIN
+                  optional: false
             - name: SEMAPHORE_ADMIN_PASSWORD
               value: Anisi@080423
             - name: SEMAPHORE_ADMIN_NAME
@@ -56,8 +71,6 @@ spec:
               value: Anisi@080423
             - name: SEMAPHORE_PLAYBOOK_PATH
               value: /tmp/sempahore
-            # - name: SEMAPHORE_ACCESS_KEY_ENCRYPTION
-            #   value: HwRoWnYA+JpqRO2OcyD6fJAhcPe1+CpgJkVDXzaH3OQ=
           name: semaphore
           image: semaphoreui/semaphore:v2.10.43
           ports:
