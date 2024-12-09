@@ -84,9 +84,10 @@ spec:
                   optional: false
             - name: SEMAPHORE_DB_PASS
               valueFrom:
-                name: semaphore-secret
-                key: SEMAPHORE_DB_PASSWORD
-                optional: false
+                secretKeyFrom:
+                  name: semaphore-secret
+                  key: SEMAPHORE_DB_PASSWORD
+                  optional: false
             - name: SEMAPHORE_PLAYBOOK_PATH
               value: /tmp/sempahore
           name: semaphore
