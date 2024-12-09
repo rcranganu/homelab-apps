@@ -110,7 +110,7 @@ spec:
   - match: Host(`semaphore.dev.k3s.rcrg.me`)
     kind: Rule
     services:
-    - name: semaphore
+    - name: semaphoreui
       port: 3000
   tls:
     secretName: tls-semaphore-certificate
