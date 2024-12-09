@@ -15,6 +15,20 @@ spec:
     requests:
       storage: 2Gi
 ---
+apiVersion: v1
+kind: Secret
+metadata: 
+  name: semaphore-secret
+  namespace: semaphore
+type: Opaque
+data:
+#use echo -n <base64-encoded-string> |base64 -d to decode
+  SEMAPHORE_ADMIN: YWRtaW4=
+  SEMAPHORE_ADMIN_PASSWORD: QW5pc2lAMDgwNDIz
+  SEMAPHORE_DB_NAME: c2VtYXBob3JlX2Rldg==
+  SEMAPHORE_DB_USER: ZGJhZG1pbg==
+  SEMAPHORE_DB_PASS: QW5pc2lAMDgwNDIz
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,9 +49,17 @@ spec:
       containers:
         - env:
             - name: SEMAPHORE_ADMIN
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: semaphore-secret
+                  key: SEMPAHORE_ADMIN
+                  optional: false
             - name: SEMAPHORE_ADMIN_PASSWORD
-              value: Anisi@080423
+              valueFrom:
+                secretKeyRef:
+                  name: semaphore-secret
+                  key: SEMAPHORE_ADMIN_PASSWORD
+                  optional: false
             - name: SEMAPHORE_ADMIN_NAME
               value: Razvan
             - name: SEMAPHORE_ADMIN_EMAIL
