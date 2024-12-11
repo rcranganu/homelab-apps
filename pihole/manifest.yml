@@ -51,8 +51,8 @@ spec:
             name: client-udp
             protocol: UDP
           volumeMounts:
-          - mountPath: /etc/pihole
-            name: pihole
+            - mountPath: /etc/pihole
+              name: pihole
         restartPolicy: always
         volumes:
           - name: pihole
