@@ -3,6 +3,18 @@ kind: Namespace
 metadata: 
   name: pihole
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole-pvc
+  namespace: pihole
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -57,4 +69,4 @@ spec:
       volumes:
         - name: pihole
           persistentVolumeClaim:
-            claimName: pihole  
+            claimName: pihole-pvc 
