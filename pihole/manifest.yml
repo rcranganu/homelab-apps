@@ -39,12 +39,6 @@ spec:
         nameservers:
           - 1.1.1.1
       containers:
-      - image: visibilityspots/cloudflared
-        imagePullPolicy: IfNotPresent
-        name: cloudflared
-        env:
-        - name: TUNNEL_METRICS
-          value: 127.0.0.1:3000
       - env:
         - name: TZ
           value: "Europe/London"
