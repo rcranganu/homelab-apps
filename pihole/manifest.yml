@@ -49,7 +49,7 @@ spec:
         - name: TZ
           value: "Europe/London"
         - name: WEBPASSWORD
-          value: password # change this!
+          value: Anisi@080423 # change this!
         - name: FTLCONF_REPLY_ADDR4
           value: pihole
         - name: PIHOLE_DNS_
