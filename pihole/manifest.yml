@@ -122,6 +122,7 @@ spec:
       port: 53
       protocol: TCP
       targetPort: 53
+  externalTrafficPolicy: Local
   loadBalancerIP: 10.10.4.7
   type: LoadBalancer
 ---
