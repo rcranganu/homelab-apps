@@ -70,3 +70,47 @@ spec:
         - name: pihole
           persistentVolumeClaim:
             claimName: pihole-pvc 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: piholeui
+  namespace: pihole
+spec:
+  selector:
+    app: pihole
+  ports:
+    - protocol: TCP
+      name: pihole-ssl
+      port: 443
+  type: ClusterIP
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pihole-certificate
+  namespace: pihole
+spec:
+  secretName: tls-pihole-certificate
+  issuerRef:
+    name: cloudflare-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - pihole.dev.k3s.rcrg.me
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-ingressroute
+  namespace: pihole
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`pihole.dev.k3s.rcrg.me`)
+    kind: Rule
+    services:
+    - name: piholeui
+      port: 443
+  tls:
+    secretName: tls-pihole.certificate
