@@ -47,7 +47,7 @@ spec:
             - containerPort: 443
               name: pihole-ssl
               protocol: TCP
-            - containerPoort: 67
+            - containerPort: 67
               name: client-udp
               protocol: UDP
           volumeMounts:
