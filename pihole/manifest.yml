@@ -84,7 +84,10 @@ spec:
               - NET_ADMIN  
       restartPolicy: Always
       volumes:
-        - name: pihole
+        - name: etc
+          persistentVolumeClaim:
+            claimName: pihole-pvc
+        - name: dnsmasq
           persistentVolumeClaim:
             claimName: pihole-pvc
 ---
