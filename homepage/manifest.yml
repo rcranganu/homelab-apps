@@ -163,3 +163,26 @@ spec:
             name: homepage
         - name: logs
           emptyDir: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressRoute
+metadata:
+  name: homepage
+  namespace: default
+  labels:
+    app.kubernetes.io/name: homepage
+  annotations:
+    gethomepage.dev/description: Dynamically Detected Homepage
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Cluster Management
+    gethomepage.dev/icon: homepage.png
+    gethomepage.dev/name: Homepage
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`homepage.dev.k3s.rcrg.me`)
+    kind: Rule
+    services:
+    - name: homepage
+      port: 3000
