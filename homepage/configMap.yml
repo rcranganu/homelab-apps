@@ -16,10 +16,14 @@ data:
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
-    - Developer:
+    - Repositories:
         - Github:
             - abbr: GH
               href: https://github.com/
+    - Cloud Services
+        - AWS:
+            - abbr: AWS
+              href: https://amazon.com/aws
   services.yaml: |
     - My First Group:
         - My First Service:
