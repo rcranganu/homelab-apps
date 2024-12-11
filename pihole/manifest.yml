@@ -33,6 +33,11 @@ spec:
       labels:
         app: pihole
     spec:
+      hostNetwork: true
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 1.1.1.1
       containers:
       - image: visibilityspots/cloudflared
         imagePullPolicy: IfNotPresent
