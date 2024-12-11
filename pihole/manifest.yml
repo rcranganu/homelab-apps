@@ -118,7 +118,7 @@ spec:
       targetPort: 53
   externalTrafficPolicy: Local
   loadBalancerIP: 10.10.4.7
-  type: LoadBalancer
+  type: ClusterIP
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
