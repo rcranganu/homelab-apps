@@ -74,16 +74,36 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app: pihole
   name: piholeui
   namespace: pihole
 spec:
   selector:
     app: pihole
   ports:
-    - protocol: TCP
-      name: pihole
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: 53
+    - name: client-udp
+      port: 67
+      protocol: UDP
+      targetPort: 67
+    - name: pihole-http
       port: 80
-  type: ClusterIP
+      protocol: TCP
+      targetPort: 80
+    - name: pihole-https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    - name: dns
+      port: 53
+      protocol: TCP
+      targetPort: 53
+  loadBalancerIP: 10.10.4.7
+  type: LoadBalancer
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -99,6 +119,23 @@ spec:
     - pihole.dev.k3s.rcrg.me
 ---
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: default-headers
+  namespace: pihole
+spec:
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 15552000
+    customFrameOptionsValue: SAMEORIGIN
+    customRequestHeaders:
+      X-Forwarded-Proto: https
+---
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: pihole-ingressroute
@@ -112,5 +149,7 @@ spec:
     services:
     - name: piholeui
       port: 80
+    middlewares:
+      - name: default-headers
   tls:
     secretName: tls-pihole.certificate
