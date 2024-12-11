@@ -117,7 +117,7 @@ spec:
       protocol: TCP
       targetPort: 53
   externalTrafficPolicy: Local
-  # loadBalancerIP: 10.10.4.7
+  loadBalancerIP: 10.10.6.42
   type: LoadBalancer
 ---
 apiVersion: cert-manager.io/v1
