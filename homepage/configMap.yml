@@ -20,10 +20,6 @@ data:
         - Github:
             - abbr: GH
               href: https://github.com/
-    - Cloud Services
-        - AWS:
-            - abbr: AWS
-              href: https://amazon.com/aws
   services.yaml: |
     - Networking:
         - My First Service:
