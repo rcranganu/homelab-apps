@@ -23,14 +23,14 @@ spec:
     spec:
       containers:
         - env:
-          - name: TZ
-            value: "Europe/London"
-          - name: WEBPASSWORD
-            value: Anisi@080423
-          - name: FTLCONF_REPLY_ADDR4
-            value: pihole
-          - name: PIHOLE_DNS_
-            value: 127.0.0.1#53
+            - name: TZ
+              value: "Europe/London"
+            - name: WEBPASSWORD
+              value: Anisi@080423
+            - name: FTLCONF_REPLY_ADDR4
+              value: pihole
+            - name: PIHOLE_DNS_
+              value: 127.0.0.1#53
           image: pihole/pihole:latest
           imagePullPolicy: IfNotPresent
           name: pihole
