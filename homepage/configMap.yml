@@ -25,17 +25,22 @@ data:
             - abbr: AWS
               href: https://amazon.com/aws
   services.yaml: |
-    - My First Group:
+    - Networking:
         - My First Service:
             href: http://localhost/
             description: Homepage is awesome
 
-    - My Second Group:
+    - Infrastructure:
         - My Second Service:
             href: http://localhost/
             description: Homepage is the best
 
-    - My Third Group:
+    - Management:
+        - My Third Service:
+            href: http://localhost/
+            description: Homepage is 😎
+
+    - Monitoring:
         - My Third Service:
             href: http://localhost/
             description: Homepage is 😎
