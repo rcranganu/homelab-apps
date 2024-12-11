@@ -81,8 +81,8 @@ spec:
     app: pihole
   ports:
     - protocol: TCP
-      name: pihole-ssl
-      port: 443
+      name: pihole
+      port: 80
   type: ClusterIP
 ---
 apiVersion: cert-manager.io/v1
@@ -111,6 +111,6 @@ spec:
     kind: Rule
     services:
     - name: piholeui
-      port: 443
+      port: 80
   tls:
     secretName: tls-pihole.certificate
