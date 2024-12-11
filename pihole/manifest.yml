@@ -53,7 +53,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/pihole
               name: pihole
-      restartPolicy: always
+      restartPolicy: Always
       volumes:
         - name: pihole
           persistentVolumeClaim:
