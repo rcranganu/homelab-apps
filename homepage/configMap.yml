@@ -15,6 +15,27 @@ data:
       blur: xl
       brightness: 90
       opacity: 60
+    theme: dark
+    color: slate
+    showStats: true
+    layout:
+      Infrastructure & Data:
+        header: true
+        style: column
+        icon: mdi-server-#FFFFFF
+      Management:
+        header: true
+        style: column
+        icon: mdi-auto-fix-#FFFFFF
+      DNS:
+        header: true
+        style: column
+      Network:
+        header: true
+        style: column
+      Storage:
+        header: true
+        style: column
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
@@ -23,15 +44,48 @@ data:
             - abbr: GH
               href: https://github.com/
   services.yaml: |
-    - Networking:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
-
-    - Infrastructure:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is the best
+    - Infrastructure & Data:
+        - Apollo:
+            icon: proxmox.svg
+            href: https://apollo.rcrg.me:8006
+            description: apollo
+            statusStyle: "dot"
+            widget:
+              type: proxmox
+              url: https://apollo.rcrg.me:8006
+              username: api@pam!homepage
+              password: 7371aa4a-b560-4324-b85e-954937dc9e81
+              node: apollo
+        - Ares:
+            icon: proxmox.svg
+            href: https://ares.rcrg.me:8006
+            description: ares
+            widget:
+              type: proxmox
+              url: https://ares.rcrg.me:8006
+              username: api@pam!homepage
+              password: 7371aa4a-b560-4324-b85e-954937dc9e81
+              node: ares
+        - Artemis:
+            icon: proxmox.svg
+            href: https://artemis.rcrg.me:8006
+            description: artemis
+            widget:
+              type: proxmox
+              url: https://artemis.rcrg.me:8006
+              username: api@pam!homepage
+              password: 7371aa4a-b560-4324-b85e-954937dc9e81
+              node: artemis
+        - Hermes:
+            icon: proxmox.svg
+            href: https://hermes.rcrg.me:8006
+            description: hermes
+            widget:
+              type: proxmox
+              url: https://hermes.rcrg.me:8006
+              username: api@pam!homepage
+              password: 7fface23-009a-4a4b-81cd-0000f526ef27
+              node: hermes
 
     - Management:
         - My Third Service:
