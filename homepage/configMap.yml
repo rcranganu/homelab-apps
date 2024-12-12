@@ -12,6 +12,9 @@ data:
   settings.yaml: |
     background:
       image: https://images.unsplash.com/photo-1637825891028-564f672aa42c
+      blur: xl
+      brightness: 90
+      opacity: 60
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
